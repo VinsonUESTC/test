@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test">
+    <select id="findUserById" parameterType="int" resultType="cn.com.mybatis.po.User">
+        SELECT * FROM USER WHERE id = #{id}
+    </select>
+
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="cn.com.mybatis.po.User">
+        SELECT * FROM USER WHERE username LIKE '%${value}%'
+    </select>
+
+    <insert id="insertUser" parameterType="cn.com.mybatis.po.User">
+        INSERT INTO USER (username,password,gender,birthday,email,province,city)
+        VALUE (#{username},#{password},#{gender},#{birthday},#{email},#{province},#{city})
+    </insert>
+</mapper>
