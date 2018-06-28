@@ -55,4 +55,26 @@ public class MyBatisTest {
         sqlSession.commit();
         sqlSession.close();
     }
+
+
+    @Test
+    public void TestDelete() throws IOException {
+        SqlSession sqlSession = dataConn.getSqlSession();
+        sqlSession.delete("test.deleteUser", 5);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void TestUpdate() throws IOException {
+        SqlSession sqlSession = dataConn.getSqlSession();
+        User user = new User();
+        user.setId(4);
+        user.setUsername("孙丽");
+        sqlSession.update("test.updateUserName",user);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
 }

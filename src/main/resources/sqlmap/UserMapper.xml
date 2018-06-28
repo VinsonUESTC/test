@@ -11,7 +11,18 @@
     </select>
 
     <insert id="insertUser" parameterType="cn.com.mybatis.po.User">
+      <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+          SELECT LAST_INSERT_ID()
+      </selectKey>
         INSERT INTO USER (username,password,gender,birthday,email,province,city)
         VALUE (#{username},#{password},#{gender},#{birthday},#{email},#{province},#{city})
     </insert>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE FROM USER WHERE id=#{id}
+    </delete>
+
+    <update id="updateUserName" parameterType="cn.com.mybatis.po.User">
+        UPDATE USER SET username=#{username} WHERE id=#{id}
+    </update>
 </mapper>
